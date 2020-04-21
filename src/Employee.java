@@ -8,6 +8,8 @@ public class Employee {
     private double baseSalary;
     private int yearsOfExperience;
     private int yearsAtCompany;
+    private int vacationWeeks;
+    private double payMultiplier;
 
     /**
      * Parameterless constructor
@@ -15,8 +17,6 @@ public class Employee {
     public Employee(){
         name = "Default";
         baseSalary = 30;
-        yearsOfExperience = 0;
-        yearsAtCompany = 0;
     }
 
     /**
@@ -26,11 +26,12 @@ public class Employee {
      *@param yearsOfExperience A variable of type int
      *@param yearsAtCompany A variable of type int
      */
-    public Employee(String name, double baseSalary, int yearsOfExperience, int yearsAtCompany){
+    public Employee(String name, double baseSalary, int yearsOfExperience, int yearsAtCompany, double payMultiplier){
         this.name = name;
         this.baseSalary = baseSalary;
         this.yearsOfExperience = yearsOfExperience;
         this.yearsAtCompany = yearsAtCompany;
+        setPayMultiplier(payMultiplier);
     }
 
     /**
@@ -89,6 +90,11 @@ public class Employee {
         return yearsAtCompany;
     }
 
+    public void setPayMultiplier(double payMultiplier){
+        this.payMultiplier = payMultiplier;
+        baseSalary = baseSalary*payMultiplier;
+    }
+
     /**
      * Accepts a int to set the employees years at the company
      * @param yearsAtCompany A variable of type int
@@ -97,12 +103,20 @@ public class Employee {
         this.yearsAtCompany = yearsAtCompany;
     }
 
+    public int getVacationDays(){
+        return vacationWeeks*7;
+    }
+
+    public void setVacationWeeks(int vacationWeeks){
+        this.vacationWeeks = vacationWeeks;
+    }
+
     /**
      * Returns the employees name, salary and motto
      * @return A value of data type String
      */
     public String toString(){
-        return "Name: " + this.name + ", Salary: $" + this.baseSalary + "k, Motto: " + this.motto();
+        return "Name: " + this.name + ", Salary: $" + this.baseSalary + "k, Motto: " + this.motto() + ", Vacation days: " + getVacationDays();
     }
 
     /**
